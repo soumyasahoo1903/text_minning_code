@@ -1,6 +1,3 @@
-### extracts keywords for metabolite
-
-
 import time
 from Bio import Entrez, Medline
 import pandas as pd
@@ -62,12 +59,6 @@ def main():
     # Calculate the number of chunks required
     num_chunks = ceil(len(metabolite_names) / chunk_size)
 
-    # Create a new Excel file for results
-    wb = openpyxl.Workbook()
-    sheet = wb.active
-    sheet.title = 'Metabolite Functions'
-    sheet.append(['Metabolite', 'Article Text'])
-
     total_start_time = time.time()  # Track total time taken
 
     # Iterate over each chunk of metabolite names
@@ -80,6 +71,12 @@ def main():
 
         chunk_start_time = time.time()  # Track time taken for each chunk
 
+        # Create a new Excel file for the current chunk
+        wb = openpyxl.Workbook()
+        sheet = wb.active
+        sheet.title = f'Chunk_{i+1}'
+        sheet.append(['Metabolite', 'Article Text'])
+
         # Iterate over each metabolite name in the current chunk
         for metabolite_name in metabolite_chunk:
             query = f'{metabolite_name}'
@@ -89,9 +86,12 @@ def main():
             # Fetch article text
             articles = fetch_article_text(id_list)
 
-            # Save the metabolite name and article text in the Excel file
+            # Save the metabolite name and article text in the current chunk's Excel file
             for article in articles:
                 sheet.append([metabolite_name, article])
+
+        # Save the current chunk's Excel file
+        wb.save(f"F:/NISER internship/text-mining for everyone's common metabolites/Chunk_{i+1}.xlsx")
 
         chunk_end_time = time.time()  # Track time taken for each chunk
         chunk_time = chunk_end_time - chunk_start_time
@@ -99,15 +99,7 @@ def main():
 
     total_end_time = time.time()  # Track total time taken
     total_time = total_end_time - total_start_time
-
-    # Save the Excel file
-    wb.save("F:/NISER internship/text-mining for everyone's common metabolites/Sristi_di(500).xlsx")
-
     print(f"Total time taken: {total_time:.2f} seconds")
 
-
-if __name__ == '__main__':
+if _name_ == '_main_':
     main()
-    
-    
-    
