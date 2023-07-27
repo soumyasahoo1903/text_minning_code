@@ -54,7 +54,7 @@ def main():
     metabolite_names = read_metabolite_names_from_excel("F:/NISER internship/Text-minning/New folder (2)/example.xlsx")
 
     # Set the chunk size
-    chunk_size = 10
+    chunk_size = 60
 
     # Calculate the number of chunks required
     num_chunks = ceil(len(metabolite_names) / chunk_size)
