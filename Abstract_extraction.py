@@ -91,7 +91,7 @@ def main():
                 sheet.append([metabolite_name, article])
 
         # Save the current chunk's Excel file
-        wb.save(f"F:/NISER internship/text-mining for everyone's common metabolites/Chunk_{i+1}.xlsx")
+        wb.save(f"F:/NISER internship/text-mining for everyone's common metabolites/Chunk_{i+1}.xlsx")  #### here only chnage the "F:/NISER internship/text-mining for everyone's common metabolites" part as the address of the output directory don't change the chunk part 
 
         chunk_end_time = time.time()  # Track time taken for each chunk
         chunk_time = chunk_end_time - chunk_start_time
