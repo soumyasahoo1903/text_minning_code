@@ -51,10 +51,10 @@ def read_metabolite_names_from_excel(file_path):
 
 def main():
     # Read metabolite names from an Excel file
-    metabolite_names = read_metabolite_names_from_excel("F:/NISER internship/text-mining for everyone's common metabolites/Sristi_di(500).xlsx")
+    metabolite_names = read_metabolite_names_from_excel("F:/NISER internship/Text-minning/New folder (2)/example.xlsx")
 
     # Set the chunk size
-    chunk_size = 60
+    chunk_size = 10
 
     # Calculate the number of chunks required
     num_chunks = ceil(len(metabolite_names) / chunk_size)
@@ -101,5 +101,5 @@ def main():
     total_time = total_end_time - total_start_time
     print(f"Total time taken: {total_time:.2f} seconds")
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     main()
